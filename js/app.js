@@ -1,1 +1,14 @@
-console.log("Thieru's World Cup Pool Loaded");
+import {
+  getPlayers
+} from "./players.js";
+
+async function loadPlayers() {
+
+  const players =
+    await getPlayers();
+
+  console.log(players);
+
+}
+
+loadPlayers();
