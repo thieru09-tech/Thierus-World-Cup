@@ -1,0 +1,1 @@
+console.log("Thieru's World Cup Pool Loaded");
