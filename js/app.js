@@ -21,12 +21,14 @@ const playerCount =
 async function loadPlayers() {
 
   const players = await getPlayers();
-
+players.sort(
+  (a, b) => b.balance - a.balance
+);
   playersList.innerHTML = "";
 
   playerCount.textContent = players.length;
 
-  players.forEach(player => {
+  players.forEach((player,index) => {
 
     const li = document.createElement("li");
 
@@ -35,16 +37,21 @@ async function loadPlayers() {
     li.style.background = "#1f2937";
     li.style.borderRadius = "8px";
 
-    li.innerHTML = `
-      <strong>${player.name}</strong>
-      <span style="float:right">
-        RM ${player.balance}
-      </span>
-    `;
+    const medal =
+  index === 0 ? "🥇" :
+  index === 1 ? "🥈" :
+  index === 2 ? "🥉" :
+  `${index + 1}.`;
 
-    playersList.appendChild(li);
+li.innerHTML = `
+  <strong>
+    ${medal} ${player.name}
+  </strong>
 
-  });
+  <span style="float:right">
+    RM ${player.balance}
+  </span>
+`;
 
 }
 
