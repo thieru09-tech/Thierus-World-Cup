@@ -20,21 +20,27 @@ const playerCount =
 
 async function loadPlayers() {
 
-  const players =
-    await getPlayers();
+  const players = await getPlayers();
 
   playersList.innerHTML = "";
 
-  playerCount.textContent =
-    players.length;
+  playerCount.textContent = players.length;
 
   players.forEach(player => {
 
-    const li =
-      document.createElement("li");
+    const li = document.createElement("li");
 
-    li.textContent =
-      `${player.name} - RM ${player.balance}`;
+    li.style.padding = "10px";
+    li.style.marginBottom = "8px";
+    li.style.background = "#1f2937";
+    li.style.borderRadius = "8px";
+
+    li.innerHTML = `
+      <strong>${player.name}</strong>
+      <span style="float:right">
+        RM ${player.balance}
+      </span>
+    `;
 
     playersList.appendChild(li);
 
