@@ -49,24 +49,23 @@ async function loadPlayers() {
       index === 2 ? "🥉" :
       `${index + 1}.`;
 
-    li.innerHTML = `
+   li.innerHTML = `
   <strong>${medal} ${player.name}</strong>
 
   <span style="float:right">
 
     RM ${player.balance}
 
-    RM ${player.balance}
-
-<button
-  class="edit-btn"
-  data-id="${player.id}"
-  style="
-    margin-left:10px;
-    cursor:pointer;
-  ">
-  ✏️
-</button>
+    <button
+      class="edit-btn"
+      data-id="${player.id}"
+      style="
+        margin-left:10px;
+        cursor:pointer;
+      ">
+      ✏️
+    </button>
+`;
 
 <button
   class="delete-btn"
