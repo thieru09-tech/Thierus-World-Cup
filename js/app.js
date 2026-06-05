@@ -20,6 +20,12 @@ const playersList =
 const playerCount =
   document.getElementById("playerCount");
 
+  const totalPool =
+  document.getElementById("totalPool");
+
+const topBalance =
+  document.getElementById("topBalance");
+
 async function loadPlayers() {
 
   const players = await getPlayers();
@@ -33,6 +39,20 @@ async function loadPlayers() {
   playersList.innerHTML = "";
 
   playerCount.textContent = players.length;
+  const totalBalance =
+  players.reduce(
+    (sum, player) =>
+      sum + Number(player.balance || 0),
+    0
+  );
+
+totalPool.textContent =
+  totalBalance;
+
+topBalance.textContent =
+  players.length > 0
+    ? players[0].balance
+    : 0;
 
   players.forEach((player, index) => {
 
