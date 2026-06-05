@@ -3,7 +3,9 @@ import { db } from "./firebase.js";
 import {
   collection,
   addDoc,
-  getDocs
+  getDocs,
+  deleteDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 export async function addPlayer(name, balance) {
@@ -22,4 +24,11 @@ export async function getPlayers() {
     id: doc.id,
     ...doc.data()
   }));
+}
+export async function deletePlayer(playerId) {
+
+  await deleteDoc(
+    doc(db, "players", playerId)
+  );
+
 }

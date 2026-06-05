@@ -1,6 +1,7 @@
 import {
   addPlayer,
-  getPlayers
+  getPlayers,
+  deletePlayer
 } from "./players.js";
 
 const playerName =
@@ -48,14 +49,47 @@ async function loadPlayers() {
       `${index + 1}.`;
 
     li.innerHTML = `
-      <strong>${medal} ${player.name}</strong>
-      <span style="float:right">
-        RM ${player.balance}
-      </span>
-    `;
+  <strong>${medal} ${player.name}</strong>
+
+  <span style="float:right">
+
+    RM ${player.balance}
+
+    <button
+      class="delete-btn"
+      data-id="${player.id}"
+      style="
+        margin-left:10px;
+        cursor:pointer;
+      ">
+      ❌
+    </button>
+
+  </span>
+`;
 
     playersList.appendChild(li);
+const deleteBtn =
+  li.querySelector(".delete-btn");
 
+deleteBtn.addEventListener(
+  "click",
+  async () => {
+
+    if (
+      !confirm(
+        `Delete ${player.name}?`
+      )
+    ) return;
+
+    await deletePlayer(
+      player.id
+    );
+
+    loadPlayers();
+
+  }
+);
   });
 
 }
