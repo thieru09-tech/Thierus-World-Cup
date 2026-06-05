@@ -1,7 +1,8 @@
 import {
   addPlayer,
   getPlayers,
-  deletePlayer
+  deletePlayer,
+  updatePlayerBalance
 } from "./players.js";
 
 const playerName =
@@ -55,20 +56,59 @@ async function loadPlayers() {
 
     RM ${player.balance}
 
-    <button
-      class="delete-btn"
-      data-id="${player.id}"
-      style="
-        margin-left:10px;
-        cursor:pointer;
-      ">
-      ❌
-    </button>
+    RM ${player.balance}
+
+<button
+  class="edit-btn"
+  data-id="${player.id}"
+  style="
+    margin-left:10px;
+    cursor:pointer;
+  ">
+  ✏️
+</button>
+
+<button
+  class="delete-btn"
+  data-id="${player.id}"
+  style="
+    margin-left:5px;
+    cursor:pointer;
+  ">
+  ❌
+</button>
 
   </span>
 `;
 
     playersList.appendChild(li);
+    const editBtn =
+  li.querySelector(".edit-btn");
+
+editBtn.addEventListener(
+  "click",
+  async () => {
+
+    const newBalance =
+      prompt(
+        `Enter new balance for ${player.name}`,
+        player.balance
+      );
+
+    if (
+      newBalance === null ||
+      newBalance === ""
+    ) return;
+
+    await updatePlayerBalance(
+      player.id,
+      newBalance
+    );
+
+    loadPlayers();
+
+  }
+);
 const deleteBtn =
   li.querySelector(".delete-btn");
 

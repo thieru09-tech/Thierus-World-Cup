@@ -5,7 +5,8 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
-  doc
+  doc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 export async function addPlayer(name, balance) {
@@ -29,6 +30,19 @@ export async function deletePlayer(playerId) {
 
   await deleteDoc(
     doc(db, "players", playerId)
+  );
+
+}
+export async function updatePlayerBalance(
+  playerId,
+  newBalance
+) {
+
+  await updateDoc(
+    doc(db, "players", playerId),
+    {
+      balance: Number(newBalance)
+    }
   );
 
 }
