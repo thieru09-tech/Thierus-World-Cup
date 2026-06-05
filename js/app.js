@@ -65,7 +65,6 @@ async function loadPlayers() {
       ">
       ✏️
     </button>
-`;
 
 <button
   class="delete-btn"
