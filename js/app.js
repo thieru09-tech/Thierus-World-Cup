@@ -22,6 +22,8 @@ async function loadPlayers() {
 
   const players = await getPlayers();
 
+console.log("PLAYERS LOADED:", players);
+
   players.sort(
     (a, b) => b.balance - a.balance
   );
