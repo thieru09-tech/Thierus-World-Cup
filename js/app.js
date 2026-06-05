@@ -52,7 +52,7 @@ li.innerHTML = `
     RM ${player.balance}
   </span>
 `;
-
+playersList.appendChild(li);
 }
 
 addPlayerBtn.addEventListener(
